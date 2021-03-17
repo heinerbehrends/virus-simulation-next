@@ -3,19 +3,19 @@ import { createPatient, patient } from '../patients/simplePatient';
 import { createVirusPopulation } from '../viruses/simpleVirus';
 
 type simpleSimArgs = {
-  virusCount: number;
-  birthProb: number;
-  clearProb: number;
-  maxPop: number;
-  repetitions: number;
+  virusCount?: number;
+  birthProb?: number;
+  clearProb?: number;
+  maxPop?: number;
+  repetitions?: number;
 };
 
 export function simpleSimulation({
-  virusCount,
-  birthProb,
-  clearProb,
-  maxPop,
-  repetitions,
+  virusCount = 100,
+  birthProb = 0.1,
+  clearProb = 0.05,
+  maxPop = 1000,
+  repetitions = 300,
 }: simpleSimArgs): number[] {
   function updatePatientGetVirusCount(patient: patient): [patient, number] {
     return [patient.updatePatient(), patient.getVirusCount()];

@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 import {
   ResponsiveContainer,
@@ -9,29 +9,29 @@ import {
   Legend,
   CartesianGrid,
   Tooltip,
-} from "recharts"
+} from 'recharts';
 
 type plotPoint = {
   // the value of the x-axis
-  name: string
+  name: string;
   // the value of the y-axis
-  value: number
-}
+  'virus count': number;
+};
 type simplePlotProps = {
-  data: number[]
-}
+  data: number[];
+};
 
 function SimplePlot({ data }: simplePlotProps): JSX.Element {
   function createPlotData(listOfVirusCounts: number[]): plotPoint[] {
     return listOfVirusCounts.map((virusCount, index) => ({
       name: index.toString(),
-      value: virusCount,
-    }))
+      'virus count': virusCount,
+    }));
   }
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
-      <ResponsiveContainer width="100%" height={480}>
+    <div style={{ width: '100%', height: '100%' }}>
+      <ResponsiveContainer width="100%" height={320}>
         <LineChart
           width={730}
           height={250}
@@ -39,15 +39,24 @@ function SimplePlot({ data }: simplePlotProps): JSX.Element {
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis
+            minTickGap={50}
+            domain={['dataMin', 'dataMax']}
+            dataKey="name"
+          />
           <YAxis type="number" />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
+          <Line
+            type="monotone"
+            dataKey="virus count"
+            stroke="#8884d8"
+            dot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
-  )
+  );
 }
 
-export default SimplePlot
+export default SimplePlot;

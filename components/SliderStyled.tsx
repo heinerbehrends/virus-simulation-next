@@ -36,7 +36,8 @@ const Slider = styled.input`
     border: 0.2px solid rgba(1, 1, 1, 0.9);
     border-radius: 1.3px;
     width: 100%;
-    height: 2px;
+    height: 4px;
+    padding: 1rem 0 1rem 0;
     cursor: pointer;
   }
   ::-moz-range-thumb {
@@ -84,15 +85,6 @@ const Slider = styled.input`
   }
 `;
 
-export default function SliderStyled({ name, min, max, step, ...rest }) {
-  return (
-    <Slider
-      type="range"
-      name={name}
-      min={min}
-      max={max}
-      step={step}
-      {...rest}
-    />
-  );
+export default function SliderStyled({ name, ...rest }) {
+  return <Slider id={name} type="range" {...rest} />;
 }

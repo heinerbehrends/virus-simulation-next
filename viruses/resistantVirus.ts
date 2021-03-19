@@ -1,28 +1,12 @@
 import { map } from 'ramda';
-import { createSimpleVirus, simpleVirusArgs } from './simpleVirus';
-
-type Resistences = {
-  guttagonol: boolean;
-  grimpex: boolean;
-};
-
-type Drug = keyof Resistences;
-
-type ResistantVirusArgs = simpleVirusArgs & {
-  resistances?: Resistences;
-  mutProb?: number;
-};
-type ResistantVirus = Readonly<{
-  resistances: Resistences;
-  mutProb: number;
-  isResistantAgainst: (nameOfDrug: Drug) => boolean;
-  doesReproduce: (popDensity: number, activeDrugs: Drug[]) => boolean;
-  doesMutate: () => boolean;
-  reproduce: () => ResistantVirus;
-  birthProb: number;
-  clearProb: number;
-  doesSurvive: () => boolean;
-}>;
+import {
+  ResistantVirusArgs,
+  ResistantVirus,
+  Drug,
+  Resistences,
+  CreateResistantPopArgs,
+} from './resistantVirusTypes';
+import { createSimpleVirus } from './simpleVirus';
 
 export function createResistantVirus({
   resistances = { guttagonol: false, grimpex: false },
@@ -73,4 +57,23 @@ export function createResistantVirus({
     doesMutate,
     reproduce,
   });
+}
+
+export function createResistantVirusPopulation({
+  virusCount,
+  resistances,
+  mutProb,
+  clearProb,
+  birthProb,
+  random0to1,
+}: CreateResistantPopArgs): ResistantVirus[] {
+  return Array(virusCount).fill(
+    createResistantVirus({
+      resistances,
+      mutProb,
+      clearProb,
+      birthProb,
+      random0to1,
+    })
+  );
 }

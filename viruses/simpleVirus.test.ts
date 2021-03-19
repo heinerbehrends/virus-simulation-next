@@ -1,4 +1,4 @@
-import { createSimpleVirus, createVirusPopulation } from './simpleVirus';
+import { createSimpleVirus, createSimpleVirusPopulation } from './simpleVirus';
 
 describe('createSimpleVirus', () => {
   it('returns the birthProb and clearProb args as properties', () => {
@@ -52,7 +52,7 @@ describe('createSimpleVirus', () => {
 
 describe('createVirusPopulation', () => {
   it('returns an array of the specified length', () => {
-    const viruses = createVirusPopulation({
+    const viruses = createSimpleVirusPopulation({
       virusCount: 13,
       birthProb: 0.1,
       clearProb: 0.01,

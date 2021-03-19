@@ -25,7 +25,7 @@ export function createSimpleVirus({
   });
 }
 
-export function createVirusPopulation({
+export function createSimpleVirusPopulation({
   virusCount,
   birthProb,
   clearProb,

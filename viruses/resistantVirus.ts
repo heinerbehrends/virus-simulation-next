@@ -8,17 +8,17 @@ import {
 } from './resistantVirusTypes';
 import { createSimpleVirus } from './simpleVirus';
 
-export function createResistantVirus({
+export function createVirus({
   resistances = { guttagonol: false, grimpex: false },
   mutProb = 0.005,
   birthProb = 0.1,
   clearProb = 0.05,
   random0to1 = Math.random,
 }: ResistantVirusArgs): ResistantVirus {
-  function isResistantAgainst(nameOfDrug: Drug) {
+  function isResistantAgainst(nameOfDrug: Drug): boolean {
     return resistances[nameOfDrug];
   }
-  function doesReproduce(popDensity: number, activeDrugs: Drug[]) {
+  function doesReproduce(popDensity: number, activeDrugs: Drug[]): boolean {
     // if the virus is not resistant against all drugs return false
     if (!activeDrugs.every(isResistantAgainst)) {
       return false;
@@ -39,7 +39,7 @@ export function createResistantVirus({
   }
   // called by the patient function to simulate the mutation of resistencies
   function reproduce() {
-    return createResistantVirus({
+    return createVirus({
       resistances: updateResistancies(resistances),
       mutProb,
       birthProb,
@@ -59,16 +59,16 @@ export function createResistantVirus({
   });
 }
 
-export function createResistantVirusPopulation({
-  virusCount,
-  resistances,
-  mutProb,
-  clearProb,
-  birthProb,
-  random0to1,
+export function createVirusPopulation({
+  virusCount = 100,
+  resistances = { guttagonol: false, grimpex: false },
+  mutProb = 0.005,
+  clearProb = 0.05,
+  birthProb = 0.1,
+  random0to1 = Math.random,
 }: CreateResistantPopArgs): ResistantVirus[] {
   return Array(virusCount).fill(
-    createResistantVirus({
+    createVirus({
       resistances,
       mutProb,
       clearProb,

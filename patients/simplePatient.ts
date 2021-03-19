@@ -4,7 +4,7 @@ export type patient = {
   getPopDensity: { (virusArr: SimpleVirus[]): number };
   getVirusCount: { (): number };
   getViruses: { (): SimpleVirus[] };
-  updatePatient: { (): patient };
+  update: { (): patient };
 };
 
 export function createPatient(viruses: SimpleVirus[], maxPop: number): patient {
@@ -37,6 +37,6 @@ export function createPatient(viruses: SimpleVirus[], maxPop: number): patient {
     getPopDensity,
     getVirusCount,
     getViruses,
-    updatePatient: update,
+    update,
   });
 }

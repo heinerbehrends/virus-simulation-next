@@ -84,7 +84,15 @@ const Slider = styled.input`
     background: #7e7e7e;
   }
 `;
-
-export default function SliderStyled({ name, ...rest }) {
-  return <Slider id={name} type="range" {...rest} />;
+export const InputStyled = styled.div`
+  margin-left: 8px;
+  padding: 1rem 1rem;
+  font-size: 16px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 175px 1fr 100px;
+  align-items: center;
+`;
+export function SliderStyled({ name, ...rest }) {
+  return <Slider type="range" id={name} {...rest} />;
 }

@@ -1,16 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
-import Slider from './SliderStyled';
-
-const InputStyled = styled.div`
-  margin-left: 8px;
-  padding: 1rem 1rem;
-  font-size: 16px;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 175px 1fr 100px;
-  align-items: center;
-`;
+import { SliderStyled, InputStyled } from './SliderStyled';
 
 type ValueSliderProps = {
   name: string;
@@ -35,7 +24,7 @@ export default function ValueSlider({
     <>
       <InputStyled>
         <label htmlFor={name}>{name}</label>
-        <Slider
+        <SliderStyled
           style={{ paddingRight: '1rem' }}
           name={name}
           min={min}
@@ -52,7 +41,9 @@ export default function ValueSlider({
           }}
           value={value}
         />
-        {step < 1 ? `${value * 100} %` : value}
+        <span style={{ paddingLeft: '1rem' }}>
+          {step < 1 ? `${value * 100} %` : value}
+        </span>
       </InputStyled>
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SimplePlot from './simplePlot';
-import { simpleSimulation } from '../simpleSim/simpleSim';
+import { simpleSimulation } from '../simulations/simpleSim';
 import ResizeObserver from '../__mocks__/ResizeObserver';
 
 describe('simplePlot component', () => {

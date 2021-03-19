@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { simpleSimulation } from '../../simpleSim/simpleSim';
+import { simpleSimulation } from '../../simulations/simpleSim';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const { maxPop, birthProb, clearProb } = JSON.parse(req.body);

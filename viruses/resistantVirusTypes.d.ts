@@ -1,3 +1,5 @@
+import SimpleVirusArgs from './simpleVirusTypes';
+
 export type Resistences = {
   guttagonol: boolean;
   grimpex: boolean;
@@ -10,13 +12,13 @@ export type ResistantVirusArgs = SimpleVirusArgs & {
   mutProb?: number;
 };
 
-export type ResistantVirus = Readonly<{
+export type Virus = Readonly<{
   resistances: Resistences;
   mutProb: number;
   isResistantAgainst: (nameOfDrug: Drug) => boolean;
   doesReproduce: (popDensity: number, activeDrugs: Drug[]) => boolean;
   doesMutate: () => boolean;
-  reproduce: () => ResistantVirus;
+  reproduce: () => Virus;
   birthProb: number;
   clearProb: number;
   doesSurvive: () => boolean;

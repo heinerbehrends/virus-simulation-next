@@ -1,8 +1,8 @@
 import { mapAccum } from 'ramda';
-import { createPatient, patient } from '../patients/simplePatient';
+import { createSimplePatient, SimplePatient } from '../patients/simplePatient';
 import { createSimpleVirusPopulation } from '../viruses/simpleVirus';
 
-type simpleSimArgs = {
+export type SimpleSimArgs = {
   virusCount?: number;
   birthProb?: number;
   clearProb?: number;
@@ -16,8 +16,10 @@ export function simpleSimulation({
   clearProb = 0.05,
   maxPop = 1000,
   repetitions = 300,
-}: simpleSimArgs): number[] {
-  function updatePatientGetVirusCount(patient: patient): [patient, number] {
+}: SimpleSimArgs): number[] {
+  function updatePatientGetVirusCount(
+    patient: SimplePatient
+  ): [SimplePatient, number] {
     return [patient.update(), patient.getVirusCount()];
   }
 
@@ -26,16 +28,12 @@ export function simpleSimulation({
     birthProb,
     clearProb,
   });
-  const patient = createPatient(viruses, maxPop);
-  const listOfUndefined = [...Array(repetitions)];
+  const patient = createSimplePatient(viruses, maxPop);
+  const list: undefined[] = [...Array(repetitions)];
   // mapAccum is like a combination of map and reduce.
   // The accumulating parameter part is the patient object and the function is patient.update()
   // The map function (mapPatient) records the virus counts to the empty list by calling patient.getVirusCount()
   // Returns a tuple of the final state of the patient and the array of virus counts.
-  const [, virusCounts] = mapAccum(
-    updatePatientGetVirusCount,
-    patient,
-    listOfUndefined
-  );
+  const [, virusCounts] = mapAccum(updatePatientGetVirusCount, patient, list);
   return virusCounts;
 }

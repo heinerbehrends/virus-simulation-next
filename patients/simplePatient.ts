@@ -1,13 +1,16 @@
 import { SimpleVirus } from '../viruses/simpleVirusTypes';
 
-export type patient = {
+export type SimplePatient = {
   getPopDensity: { (virusArr: SimpleVirus[]): number };
   getVirusCount: { (): number };
   getViruses: { (): SimpleVirus[] };
-  update: { (): patient };
+  update: { (): SimplePatient };
 };
 
-export function createPatient(viruses: SimpleVirus[], maxPop: number): patient {
+export function createSimplePatient(
+  viruses: SimpleVirus[],
+  maxPop: number
+): SimplePatient {
   function getPopDensity(virusArr) {
     return virusArr.length / maxPop;
   }
@@ -24,7 +27,7 @@ export function createPatient(viruses: SimpleVirus[], maxPop: number): patient {
     // calculate the population density of the surviving viruses
     const popDensity = getPopDensity(survivingViruses);
     // return a new patient with updated virus population
-    return createPatient(
+    return createSimplePatient(
       // add the viruses that replicate
       survivingViruses.concat(
         viruses.filter((virus) => virus.doesReproduce(popDensity))

@@ -1,7 +1,7 @@
 import { map } from 'ramda';
 import {
   ResistantVirusArgs,
-  ResistantVirus,
+  Virus,
   Drug,
   Resistences,
   CreateResistantPopArgs,
@@ -14,7 +14,7 @@ export function createVirus({
   birthProb = 0.1,
   clearProb = 0.05,
   random0to1 = Math.random,
-}: ResistantVirusArgs): ResistantVirus {
+}: ResistantVirusArgs): Virus {
   function isResistantAgainst(nameOfDrug: Drug): boolean {
     return resistances[nameOfDrug];
   }
@@ -26,11 +26,11 @@ export function createVirus({
     // else return the result of the same function as in simple virus
     return random0to1() < birthProb * (1 - popDensity);
   }
-  function doesMutate() {
+  function doesMutate(): boolean {
     return Math.random() < mutProb;
   }
   // the probability of mutation depends on mutProb
-  function updateResistancies(resistances: Resistences): Resistences {
+  function updateResistances(resistances: Resistences): Resistences {
     function mutate(isResistant: boolean): boolean {
       return doesMutate() ? !isResistant : isResistant;
     }
@@ -38,9 +38,9 @@ export function createVirus({
     return map(mutate, resistances);
   }
   // called by the patient function to simulate the mutation of resistencies
-  function reproduce() {
+  function reproduce(): Virus {
     return createVirus({
-      resistances: updateResistancies(resistances),
+      resistances: updateResistances(resistances),
       mutProb,
       birthProb,
       clearProb,
@@ -66,7 +66,7 @@ export function createVirusPopulation({
   clearProb = 0.05,
   birthProb = 0.1,
   random0to1 = Math.random,
-}: CreateResistantPopArgs): ResistantVirus[] {
+}: CreateResistantPopArgs): Virus[] {
   return Array(virusCount).fill(
     createVirus({
       resistances,

@@ -1,4 +1,4 @@
-import { createPatient } from './simplePatient';
+import { createSimplePatient } from './simplePatient';
 import { createSimpleVirusPopulation } from '../viruses/simpleVirus';
 
 describe('simplePatient', () => {
@@ -10,15 +10,15 @@ describe('simplePatient', () => {
       clearProb: 0.05,
       virusCount: 1000,
     });
-    const patient = createPatient(viruses, 2000);
+    const patient = createSimplePatient(viruses, 2000);
     expect(patient.getPopDensity(viruses)).toEqual(0.5);
-    const patient2 = createPatient(viruses, 4000);
+    const patient2 = createSimplePatient(viruses, 4000);
     expect(patient2.getPopDensity(viruses)).toEqual(0.25);
   });
 
   it(`returns an object with a method getVirusCount 
   that returns the size of the population`, () => {
-    const patient = createPatient(
+    const patient = createSimplePatient(
       createSimpleVirusPopulation({
         birthProb: 0.5,
         clearProb: 0.1,
@@ -31,7 +31,7 @@ describe('simplePatient', () => {
 
   it(`returns an object with a method 
   getViruses that returns an array of viruses`, () => {
-    const patient = createPatient(
+    const patient = createSimplePatient(
       createSimpleVirusPopulation({
         birthProb: 0.5,
         clearProb: 0.1,
@@ -55,7 +55,7 @@ describe('simplePatient', () => {
 
   it(`returns an object with a method updatePatient that returns a new patient
       with updated viruses without mutating the original array`, () => {
-    const patient = createPatient(
+    const patient = createSimplePatient(
       createSimpleVirusPopulation({
         birthProb: 0.5,
         clearProb: 0.1,

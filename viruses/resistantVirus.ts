@@ -66,7 +66,7 @@ export function createVirusPopulation({
   clearProb = 0.05,
   birthProb = 0.1,
   random0to1 = Math.random,
-}: CreateResistantPopArgs): Virus[] {
+}: CreateResistantPopArgs = {}): Virus[] {
   return Array(virusCount).fill(
     createVirus({
       resistances,

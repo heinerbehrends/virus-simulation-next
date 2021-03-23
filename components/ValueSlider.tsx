@@ -1,11 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import {
+  QueryObserverResult,
+  RefetchOptions,
+} from 'react-query/types/core/types';
 import { SliderStyled, InputStyled } from './SliderStyled';
 
-type ValueSliderProps = {
+export type ValueSliderProps = {
   name: string;
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
-  setRefetch: Dispatch<SetStateAction<number>>;
+  refetch: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<any, unknown>>;
   min: number;
   max: number;
   step: number;
@@ -15,7 +21,7 @@ export default function ValueSlider({
   name,
   value,
   setValue,
-  setRefetch,
+  refetch,
   min,
   max,
   step,
@@ -25,19 +31,20 @@ export default function ValueSlider({
       <InputStyled>
         <label htmlFor={name}>{name}</label>
         <SliderStyled
-          style={{ paddingRight: '1rem' }}
+          type="range"
           name={name}
           min={min}
           max={max}
           step={step}
           onInput={(event) => {
-            setValue(event.target.value);
+            const eventTarget = event.target as HTMLInputElement;
+            setValue(Math.round(parseFloat(eventTarget.value) * 100) / 100);
           }}
           onMouseUp={() => {
-            setRefetch(Math.random());
+            refetch();
           }}
           onTouchEnd={() => {
-            setRefetch(Math.random());
+            refetch();
           }}
           value={value}
         />

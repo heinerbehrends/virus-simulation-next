@@ -3,13 +3,12 @@ import SimplePlot from '../components/simplePlot';
 import { useQuery } from 'react-query';
 import fetch from 'isomorphic-unfetch';
 import ValueSlider from '../components/ValueSlider';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
   const [maxPop, setMaxPop] = useState(1000);
   const [birthProb, setBirthProb] = useState(0.1);
   const [clearProb, setClearProb] = useState(0.05);
-  const [refetchState, triggerRefetch] = useState(Math.random());
   const { data, status, refetch } = useQuery('simpleSim', async () => {
     const virusCounts = await fetch('./api/simple-sim/', {
       body: JSON.stringify({ maxPop, birthProb, clearProb }),
@@ -17,10 +16,6 @@ export default function Home() {
     });
     return virusCounts.json();
   });
-  useEffect(() => {
-    refetch();
-  }, [refetchState]);
-
   if (status === 'loading') {
     return <p>...loading</p>;
   }
@@ -36,7 +31,7 @@ export default function Home() {
         name={'maximum population'}
         value={maxPop}
         setValue={setMaxPop}
-        setRefetch={triggerRefetch}
+        refetch={refetch}
         min={100}
         max={5000}
         step={50}
@@ -45,7 +40,7 @@ export default function Home() {
         name={'Chance to reproduce'}
         value={birthProb}
         setValue={setBirthProb}
-        setRefetch={triggerRefetch}
+        refetch={refetch}
         min={0.01}
         max={0.2}
         step={0.01}
@@ -54,7 +49,7 @@ export default function Home() {
         name={'Chance to die'}
         value={clearProb}
         setValue={setClearProb}
-        setRefetch={triggerRefetch}
+        refetch={refetch}
         min={0.01}
         max={0.2}
         step={0.01}

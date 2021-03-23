@@ -1,6 +1,6 @@
-import { simpleSimulation } from "./simpleSim"
+import { simpleSimulation } from './simpleSim';
 
-describe("simpleSim", () => {
+describe('simpleSim', () => {
   it(`produces a list of virus counts, that is growing and smaller than maxPop`, () => {
     const listOfVirusCounts = simpleSimulation({
       virusCount: 100,
@@ -8,10 +8,10 @@ describe("simpleSim", () => {
       clearProb: 0.05,
       maxPop: 1000,
       repetitions: 300,
-    })
-    const maxVirusCount = Math.max(...listOfVirusCounts)
-    expect(maxVirusCount).toBeGreaterThan(100)
-    expect(maxVirusCount).toBeLessThan(1000)
-    expect(listOfVirusCounts).toHaveLength(300)
-  })
-})
+    });
+    const maxVirusCount = Math.max(...listOfVirusCounts);
+    expect(maxVirusCount).toBeGreaterThan(100);
+    expect(maxVirusCount).toBeLessThan(1000);
+    expect(listOfVirusCounts).toHaveLength(300);
+  });
+});

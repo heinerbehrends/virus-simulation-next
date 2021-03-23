@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Slider = styled.input`
+export const SliderStyled = styled.input`
   width: 100%;
   margin: 8px 0 8px 8px;
   background-color: transparent;
@@ -93,6 +93,3 @@ export const InputStyled = styled.div`
   grid-template-columns: 175px 1fr 100px;
   align-items: center;
 `;
-export function SliderStyled({ name, ...rest }) {
-  return <Slider type="range" id={name} {...rest} />;
-}

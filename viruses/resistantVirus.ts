@@ -37,7 +37,7 @@ export function createVirus({
     // ramda's map function can apply a function to object values as well as array values
     return map(mutate, resistances);
   }
-  // called by the patient function to simulate the mutation of resistencies
+  // called by the createPatient function to mutate the resistencies
   function reproduce(): Virus {
     return createVirus({
       resistances: updateResistances(resistances),

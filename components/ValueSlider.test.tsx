@@ -11,17 +11,15 @@ describe('ValueSlider', () => {
         name="test"
         value={2}
         setValue={mockValue}
-        setRefetch={mockRefetch}
+        refetch={mockRefetch}
         min={0}
         max={10}
         step={1}
       />
     );
-    const slider = screen.getByRole('slider', {
-      name: /test/i,
-    });
+    const slider = screen.getByRole('slider');
     fireEvent.input(slider, { target: { value: 4 } });
-    expect(mockValue).toBeCalledWith('4');
+    expect(mockValue).toBeCalledWith(4);
     fireEvent.mouseUp(slider, { target: { value: 8 } });
     fireEvent.touchEnd(slider, { target: { value: 10 } });
     expect(mockRefetch).toBeCalledTimes(2);

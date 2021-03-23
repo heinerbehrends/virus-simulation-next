@@ -11,7 +11,7 @@ export function createSimplePatient(
   viruses: SimpleVirus[],
   maxPop: number
 ): SimplePatient {
-  function getPopDensity(virusArr) {
+  function getPopDensity(virusArr: SimpleVirus[]) {
     return virusArr.length / maxPop;
   }
   function getVirusCount() {

@@ -1,9 +1,9 @@
-import { simulation } from './simulation';
+import { resistantSim } from './simulation';
 
 describe('simulation', () => {
   it(`runs a simulation and returns an array of tuples with virus count
     and resistant virus count`, () => {
-    const virusCounts = simulation({
+    const virusCounts = resistantSim({
       repetitions: 100,
       virusCount: 50,
     });
@@ -19,7 +19,7 @@ describe('simulation', () => {
   });
   it(`will return less than 2 virusCounts if both drugs are administered 
     before enough mutations exist and the viruses can't replicate`, () => {
-    const virusCount = simulation({
+    const virusCount = resistantSim({
       repetitions: 100,
       virusCount: 50,
       prescriptions: { 1: 'guttagonol', 0: 'grimpex' },
@@ -28,12 +28,12 @@ describe('simulation', () => {
   });
   it(`will return a greater number of resistant viruses if the drug is 
       administered later in the simulation compared with early on`, () => {
-    const virusCount = simulation({
+    const virusCount = resistantSim({
       repetitions: 100,
       virusCount: 50,
       prescriptions: { 200: 'guttagonol' },
     });
-    const virusCount2 = simulation({
+    const virusCount2 = resistantSim({
       repetitions: 100,
       virusCount: 50,
       prescriptions: { 0: 'guttagonol' },

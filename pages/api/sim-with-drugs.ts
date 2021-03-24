@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { simulation } from '../../simulations/simulation';
+import { resistantSim } from '../../simulations/simulation';
 import { Prescriptions } from '../../simulations/simulationTypes';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -10,11 +10,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     [guttagonol]: 'guttagonol',
     [grimpex]: 'grimpex',
   };
-  const virusCounts = simulation({
+  const virusCounts = resistantSim({
     birthProb,
     clearProb,
     maxPop,
     prescriptions,
   });
-  res.status(200).json({ virusCounts, prescriptions });
+  res.status(200).json({ virusCounts });
 };

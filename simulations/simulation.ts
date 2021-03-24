@@ -13,18 +13,7 @@ export function simulation({
   random0to1 = Math.random,
   repetitions = 300,
   prescriptions = {},
-}: SimulationArgs = {}): [number, number, number][] {
-  const patient = createPatient(
-    createVirusPopulation({
-      virusCount,
-      birthProb,
-      clearProb,
-      mutProb,
-      maxPop,
-      random0to1,
-    }),
-    1000
-  );
+}: SimulationArgs = {}): [Patient, ReadonlyArray<Patient>] {
   // creates an array with integers from 0 to length
   function createTicks(length: number): number[] {
     return addIndex(map)((_val: any, index: number) => index, Array(length));
@@ -38,10 +27,37 @@ export function simulation({
     return [patient.update(), patient];
   }
   // creates an array of a sequence of updated patients
-  function createSim(listOfTicks: number[]): [Patient, ReadonlyArray<Patient>] {
+  function createSim(
+    listOfTicks: number[],
+    patient: Patient
+  ): [Patient, ReadonlyArray<Patient>] {
     return mapAccum(sim, patient, listOfTicks);
   }
   // transforms the sequence of patients into virus and resistant virus counts
+
+  const patient = createPatient(
+    createVirusPopulation({
+      virusCount,
+      birthProb,
+      clearProb,
+      mutProb,
+      random0to1,
+    }),
+    maxPop
+  );
+  return createSim(createTicks(repetitions), patient);
+}
+
+export function resistantSim({
+  virusCount = 100,
+  birthProb = 0.1,
+  clearProb = 0.05,
+  mutProb = 0.005,
+  maxPop = 1000,
+  random0to1 = Math.random,
+  repetitions = 300,
+  prescriptions = {},
+}: SimulationArgs = {}): ReadonlyArray<[number, number, number]> {
   function getResults(patient: Patient): [number, number, number] {
     return [
       patient.getVirusCount(),
@@ -49,7 +65,15 @@ export function simulation({
       patient.getResistantCount('grimpex'),
     ];
   }
-
-  const [, simulation] = createSim(createTicks(repetitions));
-  return map(getResults, simulation);
+  const [, patients] = simulation({
+    virusCount,
+    birthProb,
+    clearProb,
+    mutProb,
+    maxPop,
+    random0to1,
+    repetitions,
+    prescriptions,
+  });
+  return map(getResults, patients);
 }

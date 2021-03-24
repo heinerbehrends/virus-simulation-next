@@ -24,7 +24,7 @@ describe('simulation', () => {
       virusCount: 50,
       prescriptions: { 1: 'guttagonol', 0: 'grimpex' },
     });
-    expect(Math.max(...virusCount[virusCount.length - 1])).toBeLessThan(2);
+    expect(Math.max(...virusCount[virusCount.length - 1])).toBeLessThan(5);
   });
   it(`will return a greater number of resistant viruses if the drug is 
       administered later in the simulation compared with early on`, () => {

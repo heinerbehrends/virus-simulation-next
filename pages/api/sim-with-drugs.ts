@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Prescriptions, simulation } from '../../simulations/simulation';
+import { simulation } from '../../simulations/simulation';
+import { Prescriptions } from '../../simulations/simulationTypes';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const { guttagonol, grimpex, maxPop, birthProb, clearProb } = JSON.parse(

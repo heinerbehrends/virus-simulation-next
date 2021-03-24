@@ -16,7 +16,10 @@ export type Virus = Readonly<{
   resistances: Resistences;
   mutProb: number;
   isResistantAgainst: (nameOfDrug: Drug) => boolean;
-  doesReproduce: (popDensity: number, activeDrugs: Drug[]) => boolean;
+  doesReproduce: (
+    popDensity: number,
+    activeDrugs: ReadonlyArray<Drug>
+  ) => boolean;
   doesMutate: () => boolean;
   reproduce: () => Virus;
   birthProb: number;

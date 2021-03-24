@@ -18,7 +18,10 @@ export function createVirus({
   function isResistantAgainst(nameOfDrug: Drug): boolean {
     return resistances[nameOfDrug];
   }
-  function doesReproduce(popDensity: number, activeDrugs: Drug[]): boolean {
+  function doesReproduce(
+    popDensity: number,
+    activeDrugs: ReadonlyArray<Drug>
+  ): boolean {
     // if the virus is not resistant against all drugs return false
     if (!activeDrugs.every(isResistantAgainst)) {
       return false;
@@ -66,7 +69,7 @@ export function createVirusPopulation({
   clearProb = 0.05,
   birthProb = 0.1,
   random0to1 = Math.random,
-}: CreateResistantPopArgs = {}): Virus[] {
+}: CreateResistantPopArgs = {}): ReadonlyArray<Virus> {
   return Array(virusCount).fill(
     createVirus({
       resistances,

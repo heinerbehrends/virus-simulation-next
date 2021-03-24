@@ -1,18 +1,5 @@
-import { Drug, Virus } from '../viruses/resistantVirusTypes';
-
-type Drugs = Drug[];
-
-export type Patient = Readonly<{
-  addDrug: (drug: Drug) => Patient;
-  getDrugs: () => Drugs;
-  getResistantCount: (drug: Drug) => number;
-  getPopDensity: (virusArr: any) => number;
-  getVirusCount: () => number;
-  getViruses: () => Viruses;
-  update: () => Patient;
-}>;
-
-export type Viruses = Readonly<Virus>[];
+import { Drug } from '../viruses/resistantVirusTypes';
+import { Viruses, Drugs, Patient } from './patientTypes';
 
 export function createPatient(
   viruses: Viruses,

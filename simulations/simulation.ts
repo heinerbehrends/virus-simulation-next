@@ -1,20 +1,8 @@
 import { addIndex, map, mapAccum } from 'ramda';
-import { Patient } from '../patients/patientWithDrugs';
 import { createPatient } from '../patients/patientWithDrugs';
+import { Patient } from '../patients/patientTypes';
 import { createVirusPopulation } from '../viruses/resistantVirus';
-import { Drug } from '../viruses/resistantVirusTypes';
-import { RandomFn } from '../viruses/simpleVirusTypes';
-import { SimpleSimArgs } from './simpleSim';
-
-export type Prescriptions = {
-  [key: number]: Drug;
-};
-
-type SimulationArgs = SimpleSimArgs & {
-  mutProb?: number;
-  prescriptions?: Prescriptions;
-  random0to1?: RandomFn;
-};
+import { SimulationArgs } from './simulationTypes';
 
 export function simulation({
   virusCount = 100,
@@ -41,8 +29,7 @@ export function simulation({
   function createTicks(length: number): number[] {
     return addIndex(map)((_val: any, index: number) => index, Array(length));
   }
-  // gets passed to mapAccum in createSim
-  // accepts a patient and a time tick,
+  // gets passed to mapAccum in createSim, accepts a patient and a time tick,
   // updates the patient and adds the prescribed drugs.
   function sim(patient: Patient, tick: number): [Patient, Patient] {
     if (tick in prescriptions) {
@@ -51,7 +38,7 @@ export function simulation({
     return [patient.update(), patient];
   }
   // creates an array of a sequence of updated patients
-  function createSim(listOfTicks: number[]) {
+  function createSim(listOfTicks: number[]): [Patient, ReadonlyArray<Patient>] {
     return mapAccum(sim, patient, listOfTicks);
   }
   // transforms the sequence of patients into virus and resistant virus counts

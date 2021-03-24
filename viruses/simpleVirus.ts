@@ -30,7 +30,7 @@ export function createSimpleVirusPopulation({
   birthProb,
   clearProb,
   random0to1 = Math.random,
-}: VirusPopulationArg): SimpleVirus[] {
+}: VirusPopulationArg): ReadonlyArray<SimpleVirus> {
   return Array(virusCount).fill(
     createSimpleVirus({ birthProb, clearProb, random0to1 })
   );

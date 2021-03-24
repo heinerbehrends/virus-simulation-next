@@ -3,7 +3,7 @@ import { Viruses, Drugs, Patient } from './patientTypes';
 
 export function createPatient(
   viruses: Viruses,
-  maxPop: number,
+  maxPop: number = 1000,
   drugs: Drugs = []
 ): Patient {
   function addDrug(drug: Drug) {

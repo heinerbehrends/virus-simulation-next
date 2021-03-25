@@ -12,7 +12,7 @@ export const SliderStyled = styled.input`
   }
   ::-webkit-slider-runnable-track {
     background: #717171;
-    border: 0.2px solid rgba(1, 1, 1, 0.9);
+    /* padding: 8px 0 8px 0; */
     border-radius: 1.3px;
     width: 100%;
     height: 2px;
@@ -33,11 +33,12 @@ export const SliderStyled = styled.input`
   }
   ::-moz-range-track {
     background: #717171;
-    border: 0.2px solid rgba(1, 1, 1, 0.9);
+    background-clip: padding-box;
+    border: 8px dashed transparent;
     border-radius: 1.3px;
     width: 100%;
-    height: 4px;
-    padding: 1rem 0 1rem 0;
+    height: 2px;
+    padding: 0;
     cursor: pointer;
   }
   ::-moz-range-thumb {

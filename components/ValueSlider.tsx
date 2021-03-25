@@ -49,7 +49,7 @@ export default function ValueSlider({
           value={value}
         />
         <span style={{ paddingLeft: '1rem' }}>
-          {step < 1 ? `${value * 100} %` : value}
+          {step < 1 ? `${Math.round(value * 100)} %` : Math.round(value)}
         </span>
       </InputStyled>
     </>

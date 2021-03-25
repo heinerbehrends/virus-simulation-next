@@ -90,6 +90,6 @@ export const InputStyled = styled.div`
   font-size: 16px;
   background-color: white;
   display: grid;
-  grid-template-columns: 175px 1fr 100px;
+  grid-template-columns: 125px 1fr 100px;
   align-items: center;
 `;

@@ -1,59 +1,19 @@
 import Head from 'next/head';
-import SimplePlot from '../components/simplePlot';
-import { useQuery } from 'react-query';
-import fetch from 'isomorphic-unfetch';
-import ValueSlider from '../components/ValueSlider';
-import { useState } from 'react';
-
+import SimSection from '../components/simSection';
+import SimpleSimSection from '../components/simpleSection';
+import HistoSimSection from '../components/histoSection';
 export default function Home() {
-  const [maxPop, setMaxPop] = useState(1000);
-  const [birthProb, setBirthProb] = useState(0.1);
-  const [clearProb, setClearProb] = useState(0.05);
-  const { data, status, refetch } = useQuery('simpleSim', async () => {
-    const virusCounts = await fetch('./api/simple-sim/', {
-      body: JSON.stringify({ maxPop, birthProb, clearProb }),
-      method: 'POST',
-    });
-    return virusCounts.json();
-  });
-  if (status === 'loading') {
-    return <p>...loading</p>;
-  }
   return (
     <>
       <Head>
-        <title>Simple Virus Simulation</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>MIT 6.00 PS12</title>
       </Head>
-      <h1 style={{ textAlign: 'center' }}>Simple Virus Simulation</h1>
-      <SimplePlot data={data.virusCounts} />
-      <ValueSlider
-        name={'maximum population'}
-        value={maxPop}
-        setValue={setMaxPop}
-        refetch={refetch}
-        min={100}
-        max={5000}
-        step={50}
-      />
-      <ValueSlider
-        name={'Chance to reproduce'}
-        value={birthProb}
-        setValue={setBirthProb}
-        refetch={refetch}
-        min={0.01}
-        max={0.2}
-        step={0.01}
-      />
-      <ValueSlider
-        name={'Chance to die'}
-        value={clearProb}
-        setValue={setClearProb}
-        refetch={refetch}
-        min={0.01}
-        max={0.2}
-        step={0.01}
-      />
+      <h1 style={{ textAlign: 'center' }}>
+        Simulating Virus Population Dynamics
+      </h1>
+      <SimpleSimSection />
+      <SimSection />
+      <HistoSimSection />
     </>
   );
 }

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import fetch from 'isomorphic-unfetch';
-import Head from 'next/head';
-import HistoPlot from '../components/histoPlot';
-import ValueSlider from '../components/ValueSlider';
+import HistoPlot from './histoPlot';
+import ValueSlider from './ValueSlider';
 
-export default function Sim() {
+export default function HistoSimSection() {
   const { data, status, refetch } = useQuery('histoSim', async () => {
     const response = await fetch('./api/histogram', {
       body: JSON.stringify({
@@ -18,19 +17,15 @@ export default function Sim() {
     return response.json();
   });
   const [nrOfPatients, setNrOfPatients] = useState(20);
-  const [guttagonol, setGuttagonol] = useState(300);
+  const [guttagonol, setGuttagonol] = useState(21);
   const [grimpex, setGrimpex] = useState(300);
   if (status === 'loading') {
     return <p>...loading</p>;
   }
   return (
-    <>
-      <Head>
-        <title>Virus Simulation Histogram</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1 style={{ textAlign: 'center' }}>Virus Simulation Histogram</h1>
-      <HistoPlot data={data.curedOrNot} />
+    <section>
+      <h2 style={{ textAlign: 'center' }}>Virus Simulation Histogram</h2>
+      <HistoPlot data={data.virusHistograms} />
       <ValueSlider
         name={'Add guttagonol'}
         value={guttagonol}
@@ -58,6 +53,6 @@ export default function Sim() {
         max={300}
         step={10}
       />
-    </>
+    </section>
   );
 }

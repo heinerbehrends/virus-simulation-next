@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { map } from 'ramda';
 import { runMultipleSims } from '../../simulations/multipleSims';
 import { Prescriptions } from '../../simulations/simulationTypes';
 
@@ -8,10 +9,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     [guttagonol]: 'guttagonol',
     [grimpex]: 'grimpex',
   };
-  const curedOrNot = runMultipleSims({
-    prescriptions,
-    nrOfPatients,
-  });
-  console.log(`cured of not${curedOrNot}`);
-  res.status(200).json({ curedOrNot: [curedOrNot] });
+  const virusHistograms = map(
+    () =>
+      runMultipleSims({
+        prescriptions,
+        nrOfPatients,
+      }),
+    Array(5)
+  );
+  res.status(200).json({ virusHistograms });
 };

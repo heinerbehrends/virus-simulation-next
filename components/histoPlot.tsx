@@ -15,7 +15,6 @@ type histoPlotProps = {
 };
 
 export default function HistoPlot({ data }: histoPlotProps) {
-  console.log(`data: ${data}`);
   function transformHistoData(
     histoData: [number, number][]
   ): { Cured: number; 'Not cured': number }[] {
@@ -27,7 +26,12 @@ export default function HistoPlot({ data }: histoPlotProps) {
   }
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <BarChart width={730} height={250} data={transformHistoData(data)}>
+      <BarChart
+        width={730}
+        height={250}
+        maxBarSize={64}
+        data={transformHistoData(data)}
+      >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />

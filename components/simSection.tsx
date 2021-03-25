@@ -6,14 +6,17 @@ import ValueSlider from './ValueSlider';
 
 export default function SimSection() {
   const { data, status, refetch } = useQuery('simWithDrugs', async () => {
-    const virusCounts = await fetch('./api/sim-with-drugs', {
+    const response = await fetch('./api/sim-with-drugs', {
       body: JSON.stringify({
         guttagonol,
         grimpex,
       }),
       method: 'POST',
     });
-    return virusCounts.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   });
   const [guttagonol, setGuttagonol] = useState(70);
   const [grimpex, setGrimpex] = useState(207);

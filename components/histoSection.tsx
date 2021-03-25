@@ -14,6 +14,9 @@ export default function HistoSimSection() {
       }),
       method: 'POST',
     });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     return response.json();
   });
   const [nrOfPatients, setNrOfPatients] = useState(20);

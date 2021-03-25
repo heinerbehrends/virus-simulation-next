@@ -7,11 +7,14 @@ export default function SimpleSimSection() {
   const [birthProb, setBirthProb] = useState(0.09);
   const [clearProb, setClearProb] = useState(0.03);
   const { data, status, refetch } = useQuery('simpleSim', async () => {
-    const virusCounts = await fetch('./api/simple-sim/', {
+    const response = await fetch('./api/simple-sim/', {
       body: JSON.stringify({ birthProb, clearProb }),
       method: 'POST',
     });
-    return virusCounts.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   });
   if (status === 'loading') {
     return <p>...loading</p>;

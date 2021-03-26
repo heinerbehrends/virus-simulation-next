@@ -17,7 +17,9 @@ type plotPoint = {
   'grimpex resistant': number;
 };
 
-function createPlotData(data: [number, number, number][]): plotPoint[] {
+function createPlotData(
+  data: ReadonlyArray<[number, number, number]>
+): plotPoint[] {
   return data.map((virusCounts, index) => ({
     name: index.toString(),
     'virus count': virusCounts[0],
@@ -27,12 +29,13 @@ function createPlotData(data: [number, number, number][]): plotPoint[] {
 }
 
 type PlotProps = {
-  data: [number, number, number][];
+  data: ReadonlyArray<[number, number, number]>;
+  style?: React.CSSProperties;
 };
 
-function Plot({ data }: PlotProps) {
+function Plot({ data, style }: PlotProps) {
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%', ...style }}>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart
           width={730}
@@ -58,13 +61,13 @@ function Plot({ data }: PlotProps) {
           <Line
             type="monotone"
             dataKey="guttagonol resistant"
-            stroke="#ec3030"
+            stroke="#7e0f0f"
             dot={false}
           />
           <Line
             type="monotone"
             dataKey="grimpex resistant"
-            stroke="#0b9406"
+            stroke="#136111"
             dot={false}
           />
         </LineChart>

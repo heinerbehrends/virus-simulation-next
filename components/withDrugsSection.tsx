@@ -24,9 +24,9 @@ export default function SimSection() {
     return <p>...loading</p>;
   }
   return (
-    <section>
+    <section style={{ marginTop: '4rem' }}>
       <h2 style={{ textAlign: 'center' }}>Virus Simulation with drugs</h2>
-      <Plot data={data.virusCounts} />
+      <Plot data={data.virusCounts} style={{ marginTop: '2rem' }} />
       <ValueSlider
         name={'Add guttagonol'}
         value={guttagonol}

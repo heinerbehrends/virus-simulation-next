@@ -4,7 +4,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query';
-import '../styles/globals.css';
+import { GlobalStyle } from '../styles/globalStyles';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +24,7 @@ function MyApp({
   return (
     <div style={{ maxWidth: '960px', margin: '0 auto' }}>
       <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </QueryClientProvider>
     </div>

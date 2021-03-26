@@ -13,14 +13,15 @@ import {
 type plotPoint = {
   // the value of the x-axis
   name: string;
-  // the value of the y-axis
+  // the name the point on the y-axis
   'virus count': number;
 };
 type simplePlotProps = {
   data: number[];
+  style?: React.CSSProperties;
 };
 
-function SimplePlot({ data }: simplePlotProps): JSX.Element {
+function SimplePlot({ data, style }: simplePlotProps): JSX.Element {
   function createPlotData(listOfVirusCounts: number[]): plotPoint[] {
     return listOfVirusCounts.map((virusCount, index) => ({
       name: index.toString(),
@@ -29,7 +30,7 @@ function SimplePlot({ data }: simplePlotProps): JSX.Element {
   }
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%', ...style }}>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart
           width={730}

@@ -20,9 +20,9 @@ export default function SimpleSimSection() {
     return <p>...loading</p>;
   }
   return (
-    <section>
+    <section style={{ marginTop: '4rem' }}>
       <h2 style={{ textAlign: 'center' }}>Simple Virus Simulation</h2>
-      <SimplePlot data={data.virusCounts} />
+      <SimplePlot data={data.virusCounts} style={{ marginTop: '2rem' }} />
       <ValueSlider
         name={'Chance to reproduce'}
         value={birthProb}

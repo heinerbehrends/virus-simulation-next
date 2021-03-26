@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const SliderStyled = styled.input`
@@ -86,11 +85,10 @@ export const SliderStyled = styled.input`
   }
 `;
 export const InputStyled = styled.div`
-  margin-left: 8px;
   padding: 1rem 1rem;
   font-size: 16px;
   background-color: white;
   display: grid;
-  grid-template-columns: 125px 1fr 100px;
+  grid-template-columns: 96px 1fr 64px;
   align-items: center;
 `;

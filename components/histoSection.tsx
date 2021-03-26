@@ -26,9 +26,9 @@ export default function HistoSimSection() {
     return <p>...loading</p>;
   }
   return (
-    <section>
+    <section style={{ marginTop: '4rem', marginBottom: '4rem' }}>
       <h2 style={{ textAlign: 'center' }}>Virus Simulation Histogram</h2>
-      <HistoPlot data={data.virusHistograms} />
+      <HistoPlot style={{ marginTop: '2rem' }} data={data.virusHistograms} />
       <ValueSlider
         name={'Add guttagonol'}
         value={guttagonol}

@@ -89,6 +89,6 @@ export const InputStyled = styled.div`
   font-size: 16px;
   background-color: white;
   display: grid;
-  grid-template-columns: 96px 1fr 64px;
+  grid-template-columns: 120px 1fr 60px;
   align-items: center;
 `;

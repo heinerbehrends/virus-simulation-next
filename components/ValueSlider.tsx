@@ -7,7 +7,7 @@ import { SliderStyled, InputStyled } from './SliderStyled';
 
 export type ValueSliderProps = {
   name: string;
-  value: number;
+  value: number | string;
   setValue: Dispatch<SetStateAction<number>>;
   refetch: (
     options?: RefetchOptions
@@ -49,7 +49,11 @@ export default function ValueSlider({
           value={value}
         />
         <span style={{ paddingLeft: '1.5rem' }}>
-          {step < 1 ? `${Math.round(value * 100)} %` : Math.round(value)}
+          {typeof value === 'number'
+            ? step < 1
+              ? `${Math.round(value * 100)} %`
+              : Math.round(value)
+            : value}
         </span>
       </InputStyled>
     </>

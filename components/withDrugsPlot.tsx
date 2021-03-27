@@ -61,13 +61,13 @@ function Plot({ data, style }: PlotProps) {
           <Line
             type="monotone"
             dataKey="guttagonol resistant"
-            stroke="#7e0f0f"
+            stroke="#a53939"
             dot={false}
           />
           <Line
             type="monotone"
             dataKey="grimpex resistant"
-            stroke="#136111"
+            stroke="#3a7a39"
             dot={false}
           />
         </LineChart>

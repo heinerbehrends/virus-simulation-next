@@ -48,7 +48,7 @@ export default function HistoSimSection() {
         step={1}
       />
       <ValueSlider
-        name={'Nr of Patients'}
+        name={'Number of Patients'}
         value={nrOfPatients}
         setValue={setNrOfPatients}
         refetch={refetch}

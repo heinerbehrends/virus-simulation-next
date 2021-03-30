@@ -39,8 +39,8 @@ export default function HistoPlot({ data, style }: histoPlotProps) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Cured" fill="#8884d8" />
-          <Bar dataKey="Not cured" fill="#82ca9d" />
+          <Bar dataKey="Cured" fill="#82ca9d" />
+          <Bar dataKey="Not cured" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
     </div>

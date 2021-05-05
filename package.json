@@ -1,6 +1,7 @@
 {
   "name": "virus-sim-next",
   "version": "0.1.0",
+  "description": "An interactive implementation of Problem Set 12 the MIT 6.00 course Introduction to computer science and programming",
   "private": true,
   "scripts": {
     "dev": "next dev",

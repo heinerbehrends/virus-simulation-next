@@ -11,9 +11,7 @@ import {
 } from 'recharts';
 
 type plotPoint = {
-  // the value of the x-axis
   name: string;
-  // the name the point on the y-axis
   'virus count': number;
 };
 type simplePlotProps = {

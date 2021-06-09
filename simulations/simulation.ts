@@ -18,7 +18,7 @@ export function simulation({
   function createTicks(length: number): number[] {
     return addIndex(map)((_val: any, index: number) => index, Array(length));
   }
-  // gets passed to mapAccum in createSim, accepts a patient and a time tick,
+  // sim gets passed to mapAccum in createSim, accepts a patient and a time tick,
   // updates the patient and adds the prescribed drugs.
   function sim(patient: Patient, tick: number): [Patient, Patient] {
     if (tick in prescriptions) {

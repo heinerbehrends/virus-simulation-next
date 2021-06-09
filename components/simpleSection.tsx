@@ -17,7 +17,19 @@ export default function SimpleSimSection() {
     return response.json();
   });
   if (status === 'loading') {
-    return <p>...loading</p>;
+    return (
+      <div
+        style={{
+          height: '564px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: '24px',
+        }}
+      >
+        ...loading
+      </div>
+    );
   }
   return (
     <section style={{ marginTop: '4rem' }}>

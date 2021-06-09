@@ -21,7 +21,19 @@ export default function SimSection() {
   const [guttagonol, setGuttagonol] = useState(70);
   const [grimpex, setGrimpex] = useState(207);
   if (status === 'loading') {
-    return <p>...loading</p>;
+    return (
+      <div
+        style={{
+          height: '545px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: '24px',
+        }}
+      >
+        ...loading
+      </div>
+    );
   }
   return (
     <section style={{ marginTop: '4rem' }}>

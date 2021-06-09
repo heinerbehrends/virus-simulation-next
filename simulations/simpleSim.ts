@@ -12,7 +12,8 @@ export function simpleSimulation({
   repetitions = 300,
   random0to1 = Math.random,
 }: SimpleSimArgs): number[] {
-  //
+  // function that's passed to mapAccum to update the patient
+  // record the virusCounts
   function updatePatientGetVirusCount(
     patient: SimplePatient
   ): [SimplePatient, number] {
@@ -24,8 +25,9 @@ export function simpleSimulation({
       virusCount,
       birthProb,
       clearProb,
+      random0to1,
     }),
-    1000
+    maxPop
   );
   // mapAccum is like a combination of map and reduce.
   // The accumulating parameter part is the patient object and the function is patient.update()
